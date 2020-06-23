@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     end
 
     # routes for signup
-    # this route will receive the signup form, add the  user to the database
+    # this route will render the signup form
     get '/signup' do
         
     end
