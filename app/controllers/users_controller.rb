@@ -10,12 +10,12 @@ class UsersController < ApplicationController
     post '/login' do
         # params looks like: {"email"=>"user@gmail.com", "password"=>"password"}
         # find the user
-        @user = User.find_by(email: params[:email])
         # authenticate the user -verify the user is who they say they are by email/password combo
+        # login the user(creates session)
+        # redirect the user to their landing page
+        @user = User.find_by(email: params[:email])
         if @user.authenticate(params[:password])
-        # login the user(creates session) 
            session[:user_id] = @user.id
-        # redirect the user to their landing page (show, index)
         redirect "/user/#{@user.id}"
         else
             # tell the user incorrect email and/or password and redirect them to login
