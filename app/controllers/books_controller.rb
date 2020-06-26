@@ -25,8 +25,12 @@ class BooksController < ApplicationController
         end
     end
 
-    get "/books/:id" do
+    get '/books/:id' do
         @book = Book.find_by(id: params[:id])
         erb  :'/books/show'
+      end
+
+      get "/books/:id/edit" do
+        erb :'/books/edit'
       end
 end
