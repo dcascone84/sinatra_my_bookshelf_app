@@ -2,3 +2,9 @@
 <%= @book.title %>&nbsp;
 <%= @book.author %>&nbsp;
 <%= @book.genre %>
+
+<br>
+<a href="/books/<%= @book.id %>/edit">Edit Book<a>
+
+<br>
+<a href="/books/<%= @book.id %>">Delete Book<a>
