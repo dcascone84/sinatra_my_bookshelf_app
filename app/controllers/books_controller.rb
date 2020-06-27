@@ -1,18 +1,20 @@
 class BooksController < ApplicationController
 
-    # line 8 - get books/new to render a form to create a new book
-    # line 12 - post books receives the form and creates a new book with the imfomation entered
-    # show route for books
-    # index route displays all books
+    get '/books' do 
+        find_book
+        @books = Book.all
+        erb :'/books/index'
+      end
 
     get '/book/new' do
-        # need to check if logged in
-        erb :'/books/new'
+        if logged_in?
+            erb :'/books/new'
+        else
+            redirect '/'
+        end
     end
 
     post '/books' do
-        # the params look like: 
-        # {"title"=>"a title", "author"=>"the author", "genre"=>"the genre"}
         if !logged_in?
             redirect :'/'
         end
