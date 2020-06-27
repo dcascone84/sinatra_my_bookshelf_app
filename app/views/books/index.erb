@@ -1,1 +1,10 @@
-index page for books
+<h2>Check out whats on everyones book shelf</h2><br>
+
+
+<% @books.each do |book| %>
+    <h5><%= book.created_at %><h5>
+    <%= book.title %>
+    <%= book.author%>
+    <%= book.genre %>
+    <p> added to shelf by <%= book.user.name%></p>
+<% end %>
