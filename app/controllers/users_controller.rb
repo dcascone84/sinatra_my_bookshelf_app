@@ -7,12 +7,12 @@ class UsersController < ApplicationController
     end
 
     # this route will receive the login form, find the user and log them in (creates session)
+    # params looks like: {"email"=>"user@gmail.com", "password"=>"password"}
+    # find the user
+    # authenticate the user -verify the user is who they say they are by email/password combo
+    # login the user(creates session)
+    # redirect the user to their landing page
     post '/login' do
-        # params looks like: {"email"=>"user@gmail.com", "password"=>"password"}
-        # find the user
-        # authenticate the user -verify the user is who they say they are by email/password combo
-        # login the user(creates session)
-        # redirect the user to their landing page
         @user = User.find_by(email: params[:email])
         if @user.authenticate(params[:password])
            session[:user_id] = @user.id
@@ -28,10 +28,10 @@ class UsersController < ApplicationController
        erb :signup 
     end
 
+    # params looks like: {"username"=>"Isabella", "email"=>"isabella@email.com",
+    # "password"=>"password"}
+    # a user should on be persisted if they have all three only name, email, and password 
     post '/users' do
-        # params looks like: {"username"=>"Isabella", "email"=>"isabella@email.com",
-        # "password"=>"password"}
-        # a user should on be persisted if they have a name, email, and password
         if params[:name] != "" && params[:email] != "" && params[:password] != "" 
         @user = User.create(params)
         session[:user_id] = @user.id
@@ -47,6 +47,7 @@ class UsersController < ApplicationController
         erb  :'/users/show'
     end
 
+    # user logout route
     get '/logout' do
         session.clear
         redirect "/"
