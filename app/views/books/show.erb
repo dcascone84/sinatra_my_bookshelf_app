@@ -3,8 +3,11 @@
 <%= @book.author %>&nbsp;
 <%= @book.genre %>
 
+<% if current_user == @book.user %>
 <br>
 <a href="/books/<%= @book.id %>/edit">Edit Book<a>
 
 <br>
 <a href="/books/<%= @book.id %>">Delete Book<a>
+
+<% end %>
