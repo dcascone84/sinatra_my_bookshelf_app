@@ -6,7 +6,7 @@ class BooksController < ApplicationController
         erb :'/books/index'
       end
 
-    get '/book/new' do
+    get '/books/new' do
         if logged_in?
             erb :'/books/new'
         else
@@ -47,8 +47,26 @@ class BooksController < ApplicationController
 
     patch '/books/:id' do
         find_book
-        @book.update(title: params[:title], author: params[:author], genre: params[:genre])
-        redirect :"/books/#{@book.id}"
+        if logged_in?
+            if @book.user == current_user && params != ""
+                @book.update(title: params[:title], author: params[:author], genre: params[:genre])
+                redirect :"/books/#{@book.id}"
+            else
+                redirect :"/users/#{current_user.id}"
+            end
+        else
+            redirect :'/'
+        end
+    end
+
+    delete '/books/:id' do
+        find_book
+        if current_user == @book.user
+            @book.destroy
+            redirect :'/books'
+        else
+            redirect :'/books'
+        end
     end
 
     private
