@@ -14,13 +14,21 @@
     <link rel="stylesheet" href="/stylesheets/main.css" />
   </head>
   <body>
-  <% if logged_in?%>
-    <div class="nav">
-      <a href="/logout">Logout</a> 
-      <a href="/books">All Books</a>
-      <a href="/book/new">New Book</a>
-    </div>
-  <%end%>
+  
+  <div class="header">
+    <h5><a href="/">Home</a></h5>
+    <% if current_user %>
+      <h5><a href='/logout'>Logout</a></h5>
+      <h5>Signed in as: <a href="/users/<%= current_user.name %>"><%= current_user.name %></a></h5>
+      <h5><a href="/logout">Logout</a></h5> 
+      <h5><a href="/books">All Books</a></h5>
+      <h5><a href="/books/new">New Book</a></h5>
+    <% else %>
+      <h5><a href="/login">Login</a></h5>
+    <% end %>
+  </div>
+  
+  <div class="container">
 
     <div class="wrapper">
         <%= yield %>
