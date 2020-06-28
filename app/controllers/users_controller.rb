@@ -16,7 +16,7 @@ class UsersController < ApplicationController
         @user = User.find_by(email: params[:email])
         if @user.authenticate(params[:password])
            session[:user_id] = @user.id
-        redirect "/users/#{@user.id}"
+           redirect "/users/#{@user.id}"
         else
             # tell the user incorrect email and/or password and redirect them to login
         end
@@ -31,13 +31,13 @@ class UsersController < ApplicationController
     # params looks like: {"username"=>"Isabella", "email"=>"isabella@email.com",
     # "password"=>"password"}
     # a user should on be persisted if they have all three only name, email, and password 
-    post '/users' do
-        if params[:name] != "" && params[:email] != "" && params[:password] != "" 
-        @user = User.create(params)
-        session[:user_id] = @user.id
-        redirect "/users/#{@user.id}"
+    post '/signup' do
+        @user = User.new(name: params[:name], email: params[:email], password: params[:password])
+        if @user.save
+            session[:user_id] = @user.id
+            redirect "/users/#{@user.id}"
         else
-        redirect '/signup'
+            erb :'/signup'
         end
     end
 
