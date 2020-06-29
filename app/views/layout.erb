@@ -16,15 +16,13 @@
   <body>
   
   <div class="header">
-    <h5><a href="/">Home</a></h5>
     <% if current_user %>
+      <h5>Signed in as: <a href="/users/<%= current_user.id%>"><%= current_user.name %></a></h5>
       <h5><a href='/logout'>Logout</a></h5>
-      <h5>Signed in as: <a href="/users/<%= current_user.name %>"><%= current_user.name %></a></h5>
-      <h5><a href="/logout">Logout</a></h5> 
-      <h5><a href="/books">All Books</a></h5>
-      <h5><a href="/books/new">New Book</a></h5>
-    <% else %>
-      <h5><a href="/login">Login</a></h5>
+      <h5><a href="/books/new">Add Books</a></h5>
+      <h5><a href="/books">View All Books</a></h5>
+    <% else%>
+      <h5><a href="/">Home</a></h5>
     <% end %>
   </div>
   
