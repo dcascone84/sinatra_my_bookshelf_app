@@ -2,7 +2,7 @@ class BooksController < ApplicationController
 
     get '/books' do 
         find_book
-        @books = Book.all
+        @books = Book.where(user_id: current_user)
         erb :'/books/index'
       end
 
