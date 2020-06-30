@@ -1,4 +1,4 @@
-
+ My Bookshelf will allow you to create a digital list of all the books you want to read. This application will allow a user to signup, login, and logout. You will also be able to add books, delete your books and edit your books. This app will replace all the papers you have lieing around, with all the books you want to read. Now with My Bookshelf you can have your book reading list in one place.
 
 Copyright <2020> <cdominick091984>
 
