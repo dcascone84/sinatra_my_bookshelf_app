@@ -1,9 +1,24 @@
-<h2>Check out whats on everyones book shelf</h2><br>
+<h2>Here is your book shelf</h2><br>
 
+<% if @books == [] %>
+    <h3>Your Shelf Is Empty, add a book!!</h3><br>
+<% else%>
+    <h3>Pick something to read!!!</h3><br>
 
-<% @books.each do |book| %>
-    <h5><%= book.created_at %><h5>
-    <%= book.title %>
-    <%= book.author%>
-    <p><%= book.genre %></p>
+    <% @books.each do |book| %>
+        <h5><%= book.created_at %></h5>
+        <h5><%= book.title %></h5>
+        <h5>by <%= book.author%></h5>
+        <h5><%= book.genre %></h5>
+        <br>
+        <form method="get" action="/books/<%= book.id %>/edit">
+        <button type="submit">Edit This Book</button>
+        </form>
+        <br>
+        <form action="/books/<%= book.id %>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <p><input type="submit" value="Delete This Book"></p>
+        </form>
+        
+    <% end %>
 <% end %>
