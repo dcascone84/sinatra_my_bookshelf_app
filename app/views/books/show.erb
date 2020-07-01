@@ -6,12 +6,12 @@
 <br>
 <% if current_user == @book.user %>
 <br>
-<a href="/books/<%= @book.id %>/edit">Edit Book<a>
-
+<form method="get" action="/books/<%= @book.id %>/edit">
+    <button type="submit">Edit This Book</button>
+</form>
 <br><br>
-
 <form action="/books/<%= @book.id %>" method="post">
-<input type="hidden" name="_method" value="delete">
-<input type="submit" value="delete this book">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete This Book">
 </form>
 <% end %>
