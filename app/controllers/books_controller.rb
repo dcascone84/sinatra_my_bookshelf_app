@@ -38,7 +38,7 @@ class BooksController < ApplicationController
             if @book.user == current_user 
                 erb :'/books/edit'
             else
-                redirect :"/users/#{current_user.name}"
+                redirect :"/users/#{current_user.id}"
             end
         else
             redirect :'/'
@@ -52,7 +52,7 @@ class BooksController < ApplicationController
                 @book.update(title: params[:title], author: params[:author], genre: params[:genre])
                 redirect :"/books/#{@book.id}"
             else
-                redirect :"/users/#{current_user.name}"
+                redirect :"/users/#{current_user.id}"
             end
         else
             redirect :'/'
